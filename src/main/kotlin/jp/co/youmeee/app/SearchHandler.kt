@@ -2,7 +2,11 @@ package jp.co.youmeee.app
 
 import java.io.File
 
-class SearchHandler(val path: String, val langList: Array<SourceList>) {
+class SearchHandler(
+        private val path: String,
+        private val langList: Array<SourceList>) {
+
+    var sizeAll: Int = 0
 
     fun execute(){
         val rootDir = File(path)
@@ -24,7 +28,7 @@ class SearchHandler(val path: String, val langList: Array<SourceList>) {
         langList.map{
             if(isTargetFile(file.name, it.language.extension)){
                 it.list.add(file.name)
-               // println(file.name)
+                sizeAll++
             }
         }
     }
