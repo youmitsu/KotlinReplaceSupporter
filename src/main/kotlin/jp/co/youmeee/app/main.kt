@@ -5,7 +5,7 @@ fun main(args: Array<String>) {
         println("Error: Please input an argument which is a targeted directory.")
         return
     } else if(args.size >= 2) {
-        println("Error: Required one argument.")
+        println("Error: Required only argument.")
         return
     }
     val rootDirArg: String = args[0]
