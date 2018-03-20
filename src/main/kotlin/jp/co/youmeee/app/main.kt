@@ -17,8 +17,7 @@ fun main(args: Array<String>) {
     val javaList = SourceList(Language("Java", "java"))
     val kotlinList = SourceList(Language("Kotlin", "kt"))
 
-    //TODO: 無視するディレクトリを読み込む、無視する処理必要
-    val handler = SearchHandler(rootDirArg, arrayOf(javaList, kotlinList), mutableListOf())
+    val handler = SearchHandler(rootDirArg, arrayOf(javaList, kotlinList), importIgnoreFiles())
     handler.execute()
 
     //TODO: Loggerクラス作る
@@ -29,6 +28,7 @@ fun main(args: Array<String>) {
     println("リプレース率: ${kotlinList.list.size / handler.sizeAll.toDouble() * 100.0} %")
 }
 
-fun IgnoreFilesImport() {
-
+fun importIgnoreFiles(): Array<Regex> {
+    val regex = Regex("app/build/")
+    return arrayOf(regex)
 }

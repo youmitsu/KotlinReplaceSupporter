@@ -5,7 +5,7 @@ import java.io.File
 class SearchHandler(
         private val path: String,
         private val langList: Array<SourceList>,
-        private val ignoreDirList: MutableList<File>) {
+        private val ignoreDirList: Array<Regex>) {
 
     var sizeAll: Int = 0
 
@@ -27,5 +27,5 @@ class SearchHandler(
     /**
      * 対象外ファイルを無視する
      */
-    private fun isIgnoreFile(file: File): Boolean = ignoreDirList.contains(file)
+    private fun isIgnoreFile(file: File): Boolean = ignoreDirList.none { !it.containsMatchIn(file.absolutePath) }
 }
