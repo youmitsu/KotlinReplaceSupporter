@@ -7,9 +7,8 @@ class SearchHandler(
         private val langList: Array<SourceList>,
         private val ignoreDirList: Array<Regex>) {
 
-    var sizeAll: Int = 0
-
-    fun execute() {
+    fun execute(): Result {
+        var sizeAll = 0
         val rootDir = File(path)
         rootDir.walkTopDown().forEach { file ->
             langList.map { langList ->
@@ -20,6 +19,7 @@ class SearchHandler(
                 }
             }
         }
+        return Result(langList, sizeAll)
     }
 
     private fun isTargetFile(file: File, extension: String): Boolean = file.extension == extension

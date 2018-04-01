@@ -1,9 +1,5 @@
 package jp.co.youmeee.app
 
-import java.io.File
-
-private val IGNORE_FILENAME = ".krs_ignore"
-
 fun main(args: Array<String>) {
     if(args.isEmpty()) {
         println("Error: Please input an argument which is a targeted directory.")
@@ -14,18 +10,14 @@ fun main(args: Array<String>) {
     }
     val rootDirArg: String = args[0]
 
-    val javaList = SourceList(Language("Java", "java"))
-    val kotlinList = SourceList(Language("Kotlin", "kt"))
+    val javaList = SourceList(Language("Java", "java"), false)
+    val kotlinList = SourceList(Language("Kotlin", "kt"), true)
 
     val handler = SearchHandler(rootDirArg, arrayOf(javaList, kotlinList), importIgnoreFiles())
-    handler.execute()
+    val result = handler.execute()
 
-    //TODO: Loggerクラス作る
-    println("------${javaList.language}------")
-    println("ファイル数: ${javaList.list.size}")
-    println("------${kotlinList.language}------")
-    println("ファイル数: ${kotlinList.list.size}")
-    println("リプレース率: ${kotlinList.list.size / handler.sizeAll.toDouble() * 100.0} %")
+    val logger = ResultLogger(result)
+    logger.log()
 }
 
 fun importIgnoreFiles(): Array<Regex> {

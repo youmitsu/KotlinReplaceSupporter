@@ -7,6 +7,7 @@ import java.io.File
  */
 class SourceList(
         val language: Language,
+        val isReplace: Boolean,
         val list: MutableList<File> = mutableListOf()) {
     fun add(file: File){
         list.add(file)
