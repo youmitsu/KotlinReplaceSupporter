@@ -10,17 +10,14 @@ fun main(args: Array<String>) {
     }
     val rootDirArg: String = args[0]
 
+    //TODO: 外から注入できた方がいいかな
     val javaList = SourceList(Language("Java", "java"), false)
     val kotlinList = SourceList(Language("Kotlin", "kt"), true)
+    val ignoreFiles = arrayOf(Regex("app/build/"))
 
-    val handler = SearchHandler(rootDirArg, arrayOf(javaList, kotlinList), importIgnoreFiles())
+    val handler = SearchHandler(rootDirArg, arrayOf(javaList, kotlinList), ignoreFiles)
     val result = handler.execute()
 
     val logger = ResultLogger(result)
     logger.log()
-}
-
-fun importIgnoreFiles(): Array<Regex> {
-    val regex = Regex("app/build/")
-    return arrayOf(regex)
 }
