@@ -12,7 +12,8 @@ class ResultLogger(val result: Result) {
         println("ファイル数：${sl.list.size}")
     }
 
-    private fun logReplaceRate() = println("リプレース率：${calcReplaceRate()}%")
+    private fun logReplaceRate() = println("リプレース率：${calcReplaceRate()[0]} %")
 
-    private fun calcReplaceRate(): Double = result.arr.filter { sl -> sl.isReplace }.size / result.sizeAll.toDouble() * 100.0
+    private fun calcReplaceRate(): List<Double> = result.arr.filter{sl -> sl.isReplace}.map{ it.list.size / result.sizeAll.toDouble() * 100.0 }
+
 }
