@@ -1,23 +1,20 @@
 package jp.co.youmeee.app
 
-fun main(args: Array<String>) {
-    if(args.isEmpty()) {
-        println("Error: Please input an argument which is a targeted directory.")
-        return
-    } else if(args.size >= 2) {
-        println("Error: Required only argument.")
-        return
-    }
-    val rootDirArg: String = args[0]
+import java.io.File
 
-    //TODO: 外から注入できた方がいいかな
+fun main(args: Array<String>) {
+    val homeDir = System.getProperty("user.home") ?: ""
+    val cd = File(".").absoluteFile.parent
+
     val javaList = SourceList(Language("Java", "java"), false)
     val kotlinList = SourceList(Language("Kotlin", "kt"), true)
-    val ignoreFiles = arrayOf(Regex("app/build/"))
 
-    val handler = SearchHandler(rootDirArg, arrayOf(javaList, kotlinList), ignoreFiles)
-    val result = handler.execute()
+    val ignoreFileReader = IgnoreFileReader("$homeDir/.krsignore", cd)
+    ignoreFileReader.read()
 
-    val logger = ResultLogger(result)
+    val handler = SearchHandler(cd, arrayOf(javaList, kotlinList), ignoreFileReader.files)
+    handler.execute()
+
+    val logger = ResultLogger(handler.result)
     logger.log()
 }

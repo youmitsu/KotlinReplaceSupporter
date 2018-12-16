@@ -14,6 +14,6 @@ class ResultLogger(val result: Result) {
 
     private fun logReplaceRate() = println("リプレース率：${calcReplaceRate()[0]} %")
 
-    private fun calcReplaceRate(): List<Double> = result.arr.filter{sl -> sl.isReplace}.map{ it.list.size / result.sizeAll.toDouble() * 100.0 }
+    private fun calcReplaceRate(): List<Double> = result.arr.filter{sl -> sl.isReplaceTarget}.map{ it.list.size / result.sizeAll.toDouble() * 100.0 }
 
 }
