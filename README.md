@@ -14,7 +14,40 @@ https://github.com/youmitsu/KotlinReplaceSupporter/releases/download/1.1/kotlin_
 2. execute this command on Android project root directory.
 
 ```
-$ java -jar kotlin_replace_supporter-1.1.jar [Android project root]
+$ cd [AndroidProjectRoot]
+$ java -jar krs.jar
 ```
 
-3. Show the result.
+3. Show the migration rate from Java to Kotlin on the current Android Project.
+
+↓ Output logs example
+
+```
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/androidTest/java/com/example/mitsuhori_y/flexapp/ExampleInstrumentedTest.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/common/enums/TabType.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/common/fuga.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/common/util/DateUtils.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/common/util/TwitterUtils.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/infla/entity/Tweet.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/infla/hoge.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/infla/net/FbClient.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/infla/net/InstaClient.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/infla/net/TwitterClient.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/infla/pref/BasePreference.kt
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/activity/FbOAuthActivity.kt
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/activity/MainActivity.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/activity/TwitterOAuthActivity.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/customVIew/TweetListAdapter.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/customVIew/TwitterListView.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/fragment/BasePageFragment.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/fragment/FbPageFragment.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/fragment/InstaPageFragment.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/main/java/jp/co/flexapp/presentation/fragment/TwitterPageFragment.java
+/Users/yumitsuhori/AndroidStudioProjects/FlexApp/app/src/test/java/com/example/mitsuhori_y/flexapp/ExampleUnitTest.java
+---------Java---------
+ファイル数：19
+---------Kotlin---------
+ファイル数：2
+リプレース率：9.523809523809524 %
+
+```

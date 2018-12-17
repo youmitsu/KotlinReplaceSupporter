@@ -42,6 +42,7 @@ dependencies {
 }
 
 task("packJar", type = Jar::class) {
+    archiveName = "krs.jar"
     manifest {
         attributes["Main-Class"] = "jp.co.youmeee.app.MainKt"
     }

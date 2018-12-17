@@ -1,5 +1,8 @@
 package jp.co.youmeee.app
 
+import java.math.BigDecimal
+import java.math.RoundingMode
+
 class ResultLogger(val result: Result) {
 
     fun log() {
@@ -7,13 +10,16 @@ class ResultLogger(val result: Result) {
         logReplaceRate()
     }
 
-    private fun logCount() = result.arr.map { sl ->
-        println("---------${sl.language}---------")
-        println("ファイル数：${sl.list.size}")
+    private fun logCount() = result.arr.forEach { it ->
+        println("---------${it.language}---------")
+        println("ファイル数：${it.list.size}")
     }
 
-    private fun logReplaceRate() = println("リプレース率：${calcReplaceRate()[0]} %")
+    private fun logReplaceRate() = println("リプレース率：${calcReplaceRate()} %")
 
-    private fun calcReplaceRate(): List<Double> = result.arr.filter{sl -> sl.isReplaceTarget}.map{ it.list.size / result.sizeAll.toDouble() * 100.0 }
+    private fun calcReplaceRate(): Double {
+        val value: Double = result.arr.filter{sl -> sl.isReplaceTarget}.map{ it.list.size / result.sizeAll.toDouble() * 100.0 }.first()
+        return BigDecimal(value).setScale(1, RoundingMode.HALF_UP).toDouble()
+    }
 
 }
