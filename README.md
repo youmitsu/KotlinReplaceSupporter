@@ -16,9 +16,12 @@ https://github.com/youmitsu/KotlinReplaceSupporter/releases/tag/v1.3
 ```
 $ cd ~
 $ touch .krsignore
+$ vim .krsignore
 ```
 
-```.krsignore
+- Example: `.krsignore`
+
+```
 app/build <- You must relative path from Android Project.
 app/src/test
 app/src/androidTest
@@ -61,6 +64,6 @@ $ java -jar krs.jar
 ファイル数：19
 ---------Kotlin---------
 ファイル数：2
-リプレース率：9.523809523809524 %
+リプレース率：9.5 %
 
 ```
