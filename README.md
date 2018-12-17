@@ -9,16 +9,29 @@ It's made from Kotlin.
 
 1. Download this jar file.
 
-https://github.com/youmitsu/KotlinReplaceSupporter/releases/download/1.1/kotlin_replace_supporter-1.1.jar
+https://github.com/youmitsu/KotlinReplaceSupporter/releases/tag/v1.3
 
-2. execute this command on Android project root directory.
+2. create `.krsignore` file on your home directory and write some file paths which you don't want to include to calculate migration rate.
+
+```
+$ cd ~
+$ touch .krsignore
+```
+
+```.krsignore
+app/build <- You must relative path from Android Project.
+app/src/test
+app/src/androidTest
+```
+
+3. execute this command on Android project root directory.
 
 ```
 $ cd [AndroidProjectRoot]
 $ java -jar krs.jar
 ```
 
-3. Show the migration rate from Java to Kotlin on the current Android Project.
+4. Show the migration rate from Java to Kotlin on the current Android Project.
 
 ↓ Output logs example
 
