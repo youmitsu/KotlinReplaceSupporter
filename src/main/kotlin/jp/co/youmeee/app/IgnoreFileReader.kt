@@ -1,17 +1,27 @@
 package jp.co.youmeee.app
 
 import java.io.File
+import java.io.FileNotFoundException
 import java.io.FileReader
 
-class IgnoreFileReader(ignoreFilePath: String, private val cd: String): FileReader(ignoreFilePath) {
+class IgnoreFileReader(ignoreFilePath: String, private val cd: String) {
 
+    private var fileReader: FileReader? = null
     var files: List<File> = mutableListOf()
 
-    override fun read(): Int {
-        val filesStr = readLines()
-        files = filesStr.map {
-            File("$cd/$it")
+    init {
+        try {
+            fileReader = FileReader(ignoreFilePath)
+        } catch(e: FileNotFoundException) {
         }
-        return if (files.isEmpty()) -1 else 1
+    }
+
+    fun read() {
+        fileReader?.let {
+            val filesStr = it.readLines()
+            files = filesStr.map {
+                File("$cd/$it")
+            }
+        }
     }
 }
